@@ -1,0 +1,80 @@
+#!/bin/sh
+
+apt update
+apt upgrade
+
+# fish (https://github.com/fish-shell/fish-shell)
+apt-add-repository -y ppa:fish-shell/release-3
+apt update
+apt install -y fish
+chsh -s /usr/bin/fish
+
+# fisher (https://github.com/jorgebucaran/fisher)
+curl -sL https://git.io/fisher | source
+
+# git
+add-apt-repository -y ppa:git-core/ppa
+apt update
+apt install -y git
+
+# n (https://github.com/tj/n)
+curl -L https://bit.ly/n-install | bash
+
+# rust (https://github.com/rust-lang/rust)
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+
+# starship (https://github.com/starship/starship)
+curl -sS https://starship.rs/install.sh | sh
+
+
+source ~/.config/fish/config.fish
+
+# zoxide (https://github.com/ajeetdsouza/zoxide)
+apt install -y zoxide
+
+# fzf (https://github.com/junegunn/fzf)
+apt install -y fzf
+
+# btop (https://github.com/aristocratos/btop)
+apt install -y btop
+
+# micro (https://github.com/zyedidia/micro)
+apt install -y micro
+
+# bat (https://github.com/sharkdp/bat)
+apt install -y bat
+
+# exa (https://github.com/ogham/exa)
+apt install -y exa
+
+# fd (https://github.com/sharkdp/fd)
+apt install -y fd-find
+
+# ripgrep (https://github.com/BurntSushi/ripgrep#installation)
+apt install -y ripgrep
+
+# cloc (https://github.com/AlDanial/cloc)
+apt install -y cloc
+
+# macchina (https://github.com/Macchina-CLI/macchina)
+cargo install macchina
+
+# dust (https://github.com/bootandy/dust)
+cargo install du-dust
+
+# procs (https://github.com/dalance/procs)
+cargo install procs
+
+# pnpm (https://github.com/pnpm/pnpm)
+npm i -g pnpm
+
+# bundlephobia-cli (https://github.com/AdrieanKhisbe/bundle-phobia-cli)
+npm i -g bundle-phobia-cli
+
+
+# setup config files
+cd ~/.dotfiles
+stow .
+
+# install fish plugins
+fisher update
